@@ -38,7 +38,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
+    #r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
     if msg in ['爛', '你好爛', '這甚麼爛程式']:
         image_message = ImageSendMessage(
@@ -113,6 +113,18 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
+
+
+    if msg = r:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/jiLIZ3E.jpg',
+            preview_image_url='https://i.imgur.com/jiLIZ3E.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
 
 
     if msg in ['嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
