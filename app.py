@@ -50,6 +50,9 @@ def handle_message(event):
     if msg in ['meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
         r = '請問今天想生產哪種寶寶迷因呢?'
 
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 #image message with user
     if msg in ['中指']:
@@ -58,13 +61,11 @@ def handle_message(event):
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
         )
 
+line_bot_api.reply_message(event.reply_token, image_message)
 
 
 
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
 
 
 if __name__ == "__main__":
