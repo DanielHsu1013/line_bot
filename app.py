@@ -38,7 +38,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    #r = '我還不聽不懂你說什麼'
+    r = '我還不聽不懂你說什麼(OrQ)'
 
     if msg in ['爛', '你好爛', '這甚麼爛程式']:
         image_message = ImageSendMessage(
@@ -93,7 +93,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['開心', '快樂', 'happy', 'Happy' ]:
+    if msg in ['開心', '快樂', 'happy', 'Happy', '心情好', '好心情', '喜' ]:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/mbGL9Oc.jpg',
             preview_image_url='https://i.imgur.com/mbGL9Oc.jpg'
