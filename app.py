@@ -45,12 +45,20 @@ def handle_message(event):
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
         )
+        
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
 
     if msg in ['晚安', '掰掰', '再見', '明天見']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/0hhmZN6.jpg',
             preview_image_url='https://i.imgur.com/0hhmZN6.jpg'
         )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
 
     if msg in ['吃大便', '你是不是想吃大便', '你吃大便' ]:
         image_message = ImageSendMessage(
