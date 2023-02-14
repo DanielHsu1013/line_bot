@@ -41,13 +41,13 @@ def handle_message(event):
     r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
     #image message with user
-    if msg in ['幹', 'shit', '好爛', '爛', '爛東西', '破東西', '好鳥']:
+    if msg in ['爛']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
         )
-        
-    elif msg in ['晚安', '掰掰', '再見', '明天見']:
+
+    if msg in ['晚安', '掰掰', '再見', '明天見']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/0hhmZN6.jpg',
             preview_image_url='https://i.imgur.com/0hhmZN6.jpg'
