@@ -159,7 +159,27 @@ def handle_message(event):
             event.reply_token, 
             image_message)
 
-    
+
+    if msg in ['起床', '早上', '早安', '太陽曬屁股']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/sjLjq65.jpg',
+            preview_image_url='https://i.imgur.com/sjLjq65.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+    if msg in ['酷', '帥', '厲害', '計畫通']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/obU8uWZ.jpg',
+            preview_image_url='https://i.imgur.com/obU8uWZ.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
 
 
     if msg in ['嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
