@@ -50,7 +50,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
-            return
+        return
 
 
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
