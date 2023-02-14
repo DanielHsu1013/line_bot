@@ -40,7 +40,7 @@ def handle_message(event):
     msg = event.message.text
     r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
-    if msg in ['爛']:
+    if msg in ['爛', '你好爛', '這甚麼爛程式']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
@@ -71,12 +71,58 @@ def handle_message(event):
             image_message)
 
 
+    if msg in ['好吧', 'ok', 'OK', 'Ok', '好', '沒關係' ]:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/NOTTPZW.jpg',
+            preview_image_url='https://i.imgur.com/NOTTPZW.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+    if msg in ['挑倖', '嗆人', '決鬥' ]:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/g7tnM8p.jpg',
+            preview_image_url='https://i.imgur.com/g7tnM8p.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+    if msg in ['開心', '快樂', 'happy', 'Happy' ]:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/mbGL9Oc.jpg',
+            preview_image_url='https://i.imgur.com/mbGL9Oc.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+    if msg in ['嘲諷', '諷刺', '取笑', '笑死' ]:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/Vxn4r6w.jpg',
+            preview_image_url='https://i.imgur.com/Vxn4r6w.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
     if msg in ['嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
-        r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理`，請問今天需要什麼?'
+        r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理。先聲名本寶寶不太會聊天，目前還在學習中。請多擔待。請問今天需要什麼?'
     elif msg in ['來聊天', '可以聊天嗎?','要不要聊天?' ,'可以聊天嗎' ,'要不要聊天'] :
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
         r = '請問今天想生產哪種寶寶迷因呢?'
+    elif msg in ['不是這個', '這不是我要的','不是' ,'不' ,'no', 'No'] :
+        r = '很抱歉，本寶寶找不到你要的圖'        
 
     line_bot_api.reply_message(
         event.reply_token,
