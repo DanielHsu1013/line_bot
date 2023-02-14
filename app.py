@@ -7,7 +7,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 )
 
 app = Flask(__name__)
@@ -52,7 +52,7 @@ def handle_message(event):
 
 
 #image message with user
-    if msg in [中指]:
+    if msg in ['中指']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
