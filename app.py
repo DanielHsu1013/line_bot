@@ -43,7 +43,7 @@ def handle_message(event):
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理`，請問今天需要什麼?'
     
-    if msg in ['meme', 'MEME', 'Meme', '迷因']
+    if msg in ['meme', 'MEME', 'Meme', '迷因']:
         r = '請問今天想生產哪種寶寶迷因呢?'
 
 
