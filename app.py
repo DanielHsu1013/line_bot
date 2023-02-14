@@ -34,14 +34,26 @@ def callback():
 
     return 'OK'
 
-
+#message wtith user
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    s = 'hi 你好'
+    r = '可以請你說人話嗎?'
+
+    if msg in ['Hi', 'hi', 'HI', '你好', '妳好']:
+        r = '嗨，在下是可愛寶寶。'
+
+
+
+
+
+
+
+
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=s))
+        TextSendMessage(text=r))
 
 
 if __name__ == "__main__":
