@@ -41,7 +41,7 @@ def handle_message(event):
     r = '可以請你說人話嗎?'
 
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安']:
-        r = '安安，早安午安晚上好！<br/> 在下是可愛寶寶，你/妳的Meme Zone迷因字典管理員'
+        r = '安安，早安午安晚上好！'<br/>'在下是可愛寶寶，你/妳的Meme Zone迷因字典管理員'
 
 
 
