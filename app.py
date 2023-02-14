@@ -41,11 +41,18 @@ def handle_message(event):
     r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
     #image message with user
-    if msg in ['中指']:
+    if msg in ['幹', 'shit', '好爛', '爛', '爛東西', '破東西', '好鳥']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
         )
+
+    if msg in ['晚安', '掰掰', '再見', '明天見']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/0hhmZN6.jpg',
+            preview_image_url='https://i.imgur.com/0hhmZN6.jpg'
+        )
+
 
         line_bot_api.reply_message(
             event.reply_token, 
@@ -55,7 +62,7 @@ def handle_message(event):
 
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理`，請問今天需要什麼?'
-    elif msg in ['聊', '講話']:
+    elif msg in ['來聊天', '可以聊天嗎?','要不要聊天?' ,'可以聊天嗎' ,'要不要聊天']:
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['吃大便']:
         r = '你才想吃大便吧?'
