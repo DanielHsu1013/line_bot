@@ -39,6 +39,15 @@ def callback():
 def handle_message(event):
     msg = event.message.text
     r = '我還不聽不懂你說什麼(OrQ)'
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/jiLIZ3E.jpg',
+            preview_image_url='https://i.imgur.com/jiLIZ3E.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
 
     if msg in ['爛', '你好爛', '這甚麼爛程式']:
         image_message = ImageSendMessage(
@@ -115,17 +124,18 @@ def handle_message(event):
             image_message)
 
 
-    if msg == r:
+    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛' ]:
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/jiLIZ3E.jpg',
-            preview_image_url='https://i.imgur.com/jiLIZ3E.jpg'
+            original_content_url='https://i.imgur.com/Vxn4r6w.jpg',
+            preview_image_url='https://i.imgur.com/Vxn4r6w.jpg'
         )
 
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
 
-    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛' ]:
+
+    if msg in ['今天是我的生日', '我今天生日', '可以唱生日快樂給我聽嗎', '可以唱生日快樂給我聽嗎?', '生日', '生日快樂' ]:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/Vxn4r6w.jpg',
             preview_image_url='https://i.imgur.com/Vxn4r6w.jpg'
