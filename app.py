@@ -39,14 +39,7 @@ def callback():
 def handle_message(event):
     msg = event.message.text
     r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
-    image_message = ImageSendMessage(
-        original_content_url='https://i.imgur.com/jiLIZ3E.jpg',
-        preview_image_url='https://i.imgur.com/jiLIZ3E.jpg'
-    )
 
-    line_bot_api.reply_message(
-        event.reply_token, 
-        image_message)
 
 
     if msg in ['爛', '你好爛', '這甚麼爛程式']:
