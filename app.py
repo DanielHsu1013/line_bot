@@ -40,7 +40,6 @@ def handle_message(event):
     msg = event.message.text
     r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
-    #image message with user
     if msg in ['爛']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ydwgx1F.jpg',
@@ -53,7 +52,11 @@ def handle_message(event):
             preview_image_url='https://i.imgur.com/0hhmZN6.jpg'
         )
 
-
+    if msg in ['吃大便', '你是不是想吃大便', '你吃大便' ]:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/tArnBjV.jpg',
+            preview_image_url='https://i.imgur.com/tArnBjV.jpg'
+        )
 
         line_bot_api.reply_message(
             event.reply_token, 
