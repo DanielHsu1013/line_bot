@@ -47,11 +47,12 @@ def handle_message(event):
             preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
         )
 
-    if msg in ['晚安', '掰掰', '再見', '明天見']:
+    elif msg in ['晚安', '掰掰', '再見', '明天見']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/0hhmZN6.jpg',
             preview_image_url='https://i.imgur.com/0hhmZN6.jpg'
         )
+
 
 
         line_bot_api.reply_message(
