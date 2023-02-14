@@ -42,11 +42,11 @@ def handle_message(event):
 
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理`，請問今天需要什麼?'
-        elif msg in ['聊', '講話']:
+    elif msg in ['聊', '講話']:
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
-        elif msg in ['吃大便']:
+    elif msg in ['吃大便']:
         r = '你才想吃大便吧?'
-        elif msg in ['q']:
+    elif msg in ['q']:
         break
     
     if msg in ['meme', 'MEME', 'Meme', '迷因']:
