@@ -40,6 +40,19 @@ def handle_message(event):
     msg = event.message.text
     r = '可以請你說人話嗎? (若要叫醒小助理，請先喚醒他)'
 
+    #image message with user
+    if msg in ['中指']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/ydwgx1F.jpg',
+            preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+            return
+
+
     if msg in ['Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理`，請問今天需要什麼?'
     elif msg in ['聊', '講話']:
@@ -54,14 +67,7 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=r))
 
-#image message with user
-    if msg in ['中指']:
-        image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/ydwgx1F.jpg',
-            preview_image_url='https://i.imgur.com/ydwgx1F.jpg'
-        )
 
-line_bot_api.reply_message(event.reply_token, image_message)
 
 
 
