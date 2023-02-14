@@ -46,8 +46,6 @@ def handle_message(event):
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['吃大便']:
         r = '你才想吃大便吧?'
-    elif msg in ['q']:
-        break
     
     if msg in ['meme', 'MEME', 'Meme', '迷因']:
         r = '請問今天想生產哪種寶寶迷因呢?'
