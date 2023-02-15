@@ -222,8 +222,7 @@ def handle_message(event):
             r = '請問今天想生產哪種寶寶迷因呢?'
     elif msg in ['不是這個', '這不是我要的','不是' ,'不' ,'no', 'No'] :
             r = '很抱歉，本寶寶找不到你要的圖'        
-
-    
+            
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=r))
