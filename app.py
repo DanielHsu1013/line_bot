@@ -64,8 +64,8 @@ def handle_message(event):
 
     if msg in ['吃大便', '你是不是想吃大便', '你吃大便' ]:
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/tArnBjV.jpg',
-            preview_image_url='https://i.imgur.com/tArnBjV.jpg'
+            original_content_url='https://i.imgur.com/3gOfodT.jpg',
+            preview_image_url='https://i.imgur.com/3gOfodT.jpg'
         )
 
         line_bot_api.reply_message(
@@ -182,6 +182,38 @@ def handle_message(event):
             image_message)
 
 
+if msg in ['哭', '哭腰', '靠腰', '哭喔', '哭ㄟ', '傻眼']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/ZfiANhP.jpg',
+            preview_image_url='https://i.imgur.com/ZfiANhP.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+if msg in ['等', '等等', '等一下', '讓我想想', '讓我想一想', '等喔']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/khbC5q5.jpg',
+            preview_image_url='https://i.imgur.com/khbC5q5.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+if msg in ['快', '快點', '快一點', '你好慢', '好慢', '好慢喔', '太慢了吧']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/TxVq5pq.jpg',
+            preview_image_url='https://i.imgur.com/TxVq5pq.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
     if msg in ['哈囉', '嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理。先聲名本寶寶不太會聊天，目前還在學習中。請多擔待。請問今天需要什麼?'
     elif msg in ['來聊天', '可以聊天嗎?','要不要聊天?' ,'可以聊天嗎' ,'要不要聊天', '要來聊天嗎'] :
@@ -198,7 +230,52 @@ def handle_message(event):
 
 
 
+import openai
 
+from flask_ngrok import run_with_ngrok   # colab 使用，本機環境請刪除
+from flask import Flask, request
+
+# 載入 LINE Message API 相關函式庫
+from linebot import LineBotApi, WebhookHandler
+from linebot.models import TextSendMessage   # 載入 TextSendMessage 模組
+import json
+
+app = Flask(__name__)
+
+@app.route("/", methods=['POST'])
+def linebot():
+    body = request.get_data(as_text=True)
+    json_data = json.loads(body)
+    print(json_data)
+    try:
+        line_bot_api = LineBotApi('你的 Channel access token')
+        handler = WebhookHandler('你的 Channel secret ')
+        signature = request.headers['X-Line-Signature']
+        handler.handle(body, signature)
+        tk = json_data['events'][0]['replyToken']
+        msg = json_data['events'][0]['message']['text']
+        # 取出文字的前五個字元，轉換成小寫
+        ai_msg = msg[:6].lower()
+        reply_msg = ''
+        # 取出文字的前五個字元是 hi ai:
+        if ai_msg == 'hi ai:':
+            openai.api_key = '你的 OpenAI API Key'
+            # 將第六個字元之後的訊息發送給 OpenAI
+            response = openai.Completion.create(
+                engine='text-davinci-003',
+                prompt=msg[6:],
+                max_tokens=256,
+                temperature=0.5,
+                )
+            # 接收到回覆訊息後，移除換行符號
+            reply_msg = response["choices"][0]["text"].replace('\n','')
+        else:
+            reply_msg = msg
+        text_message = TextSendMessage(text=reply_msg)
+        line_bot_api.reply_message(tk,text_message)
+    except:
+        print('error')
+    return 'OK'
 
 
 
