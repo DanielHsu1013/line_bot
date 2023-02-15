@@ -95,7 +95,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['開心', '快樂', 'happy', 'Happy', '心情好', '好心情', '喜' ]:
+    if msg in ['開心', '快樂', 'happy', 'Happy', '心情好', '好心情', '喜', '喜歡' ]:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/mbGL9Oc.jpg',
             preview_image_url='https://i.imgur.com/mbGL9Oc.jpg'
@@ -117,7 +117,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛', '你也太可愛了吧' ]:
+    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛', '你也太可愛了吧', '可愛']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/amRMc9g.jpg',
             preview_image_url='https://i.imgur.com/amRMc9g.jpg'
@@ -141,18 +141,18 @@ def handle_message(event):
 
     if msg in ['怪人', '奇怪', 'weirdo', 'weird', 'Weirdo', '神經病']:
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/6LT8Qy4.jpg',
-            preview_image_url='https://i.imgur.com/6LT8Qy4.jpg'
+            original_content_url='https://i.imgur.com/nbdTIWD.jpg',
+            preview_image_url='https://i.imgur.com/nbdTIWD.jpg'
         )
 
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
 
-    if msg in ['不是', '不是這個', '否', 'no', 'No', '不對']:
+    if msg in ['不是', '不是這個', '否', 'no', 'No', '不對', '這不是我要的', '我不要這個', ]:
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/6LT8Qy4.jpg',
-            preview_image_url='https://i.imgur.com/6LT8Qy4.jpg'
+            original_content_url='https://i.imgur.com/Ef5BVhr.jpg',
+            preview_image_url='https://i.imgur.com/Ef5BVhr.jpg'
         )
 
         line_bot_api.reply_message(
@@ -182,7 +182,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
+    if msg in ['哈囉', '嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
         r = '安安，早安、午安、晚上好！在下是可愛寶寶，你/妳的Meme Zone寶寶迷因庫小助理。先聲名本寶寶不太會聊天，目前還在學習中。請多擔待。請問今天需要什麼?'
     elif msg in ['來聊天', '可以聊天嗎?','要不要聊天?' ,'可以聊天嗎' ,'要不要聊天', '要來聊天嗎'] :
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
