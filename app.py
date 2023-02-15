@@ -247,8 +247,8 @@ def linebot():
     json_data = json.loads(body)
     print(json_data)
     try:
-        line_bot_api = LineBotApi('你的 Channel access token')
-        handler = WebhookHandler('你的 Channel secret ')
+        line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
+        handler = WebhookHandler('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')
         signature = request.headers['X-Line-Signature']
         handler.handle(body, signature)
         tk = json_data['events'][0]['replyToken']
@@ -258,7 +258,7 @@ def linebot():
         reply_msg = ''
         # 取出文字的前五個字元是 hi ai:
         if ai_msg == 'hi ai:':
-            openai.api_key = '你的 OpenAI API Key'
+            openai.api_key = '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'
             # 將第六個字元之後的訊息發送給 OpenAI
             response = openai.Completion.create(
                 engine='text-davinci-003',
