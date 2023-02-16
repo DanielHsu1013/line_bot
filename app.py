@@ -1,3 +1,5 @@
+import random
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -14,6 +16,18 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
+
+# a list of image URLs
+image_urls = [
+    'https://i.imgur.com/ydwgx1F.jpg',
+    'https://i.imgur.com/0hhmZN6.jpg',
+    'https://i.imgur.com/3gOfodT.jpg'
+    'https://i.imgur.com/NOTTPZW.jpg',
+    'https://i.imgur.com/g7tnM8p.jpg',
+    'https://i.imgur.com/mbGL9Oc.jpg',
+    'https://i.imgur.com/Vxn4r6w.jpg',
+    'https://i.imgur.com/amRMc9g.jpg'
+]
 
 
 @app.route("/callback", methods=['POST'])
@@ -33,6 +47,7 @@ def callback():
         abort(400)
 
     return 'OK'
+
 
 #message with user
 @handler.add(MessageEvent, message=TextMessage)
@@ -227,8 +242,37 @@ def handle_message(event):
         TextSendMessage(text=r))
 
 
+# Sends a message containing a random image to the specified user
+def send_random_image_message(user_id):
+  image_url = random.choice(image_urls)
+  image_response = requests.get(image_url)
+  image_content = image_response.content
+  message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
+  line_bot_api.push_message(user_id, message)
 
-# import openai
+
+# Your existing code for handling incoming messages
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    user_id = event.source.user_id
+    message_text = event.message.text
+
+    if message_text.lower() == '隨機':
+        send_random_image_message(user_id)
+    else:
+        message = TextSendMessage(text='You said: ' + message_text)
+        line_bot_api.push_message(user_id, message)
+
+
+
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+    # import openai
 
 # from flask import Flask, request
 
@@ -273,8 +317,3 @@ def handle_message(event):
 #     except:
 #         print('error')
 #     return 'OK'
-
-
-
-if __name__ == "__main__":
-    app.run()
