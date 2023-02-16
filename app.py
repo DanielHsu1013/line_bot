@@ -49,10 +49,29 @@ def callback():
     return 'OK'
 
 
-#message with user
+# Sends a message containing a random image to the specified user
+def send_random_image_message(user_id):
+    image_url = random.choice(image_urls)
+    image_response = requests.get(image_url)
+    image_content = image_response.content
+    message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
+    line_bot_api.push_message(user_id, message)
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
+
+# Your existing code for handling incoming messages
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text
+    user_id = event.source.user_id
+    message_text = event.message.text
+
+    if message_text.lower() == '隨機':
+        send_random_image_message(user_id)
+
+    else:
     r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
 
 
@@ -242,26 +261,6 @@ def handle_message(event):
         TextSendMessage(text=r))
 
 
-# Sends a message containing a random image to the specified user
-def send_random_image_message(user_id):
-  image_url = random.choice(image_urls)
-  image_response = requests.get(image_url)
-  image_content = image_response.content
-  message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
-  line_bot_api.push_message(user_id, message)
-
-
-# Your existing code for handling incoming messages
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    user_id = event.source.user_id
-    message_text = event.message.text
-
-    if message_text.lower() == '隨機':
-        send_random_image_message(user_id)
-    else:
-        message = TextSendMessage(text='You said: ' + message_text)
-        line_bot_api.push_message(user_id, message)
 
 
 
