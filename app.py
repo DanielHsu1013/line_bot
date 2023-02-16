@@ -71,7 +71,7 @@ def handle_message(event):
     if message_text.lower() == '隨機':
         send_random_image_message(user_id)
 
-    else:
+    else :
         r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
 
 
