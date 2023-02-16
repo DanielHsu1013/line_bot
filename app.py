@@ -72,7 +72,7 @@ def handle_message(event):
         send_random_image_message(user_id)
 
     else:
-    r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
+        r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
 
 
 
