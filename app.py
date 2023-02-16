@@ -1,4 +1,5 @@
 import random
+import requests
 
 from flask import Flask, request, abort
 
@@ -16,18 +17,6 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
-
-# a list of image URLs
-image_urls = [
-    'https://i.imgur.com/ydwgx1F.jpg',
-    'https://i.imgur.com/0hhmZN6.jpg',
-    'https://i.imgur.com/3gOfodT.jpg'
-    'https://i.imgur.com/NOTTPZW.jpg',
-    'https://i.imgur.com/g7tnM8p.jpg',
-    'https://i.imgur.com/mbGL9Oc.jpg',
-    'https://i.imgur.com/Vxn4r6w.jpg',
-    'https://i.imgur.com/amRMc9g.jpg'
-]
 
 
 @app.route("/callback", methods=['POST'])
@@ -48,6 +37,17 @@ def callback():
 
     return 'OK'
 
+# a list of image URLs
+image_urls = [
+    'https://i.imgur.com/ydwgx1F.jpg',
+    'https://i.imgur.com/0hhmZN6.jpg',
+    'https://i.imgur.com/3gOfodT.jpg'
+    'https://i.imgur.com/NOTTPZW.jpg',
+    'https://i.imgur.com/g7tnM8p.jpg',
+    'https://i.imgur.com/mbGL9Oc.jpg',
+    'https://i.imgur.com/Vxn4r6w.jpg',
+    'https://i.imgur.com/amRMc9g.jpg'
+]
 
 # Sends a message containing a random image to the specified user
 def send_random_image_message(user_id):
