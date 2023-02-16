@@ -46,7 +46,26 @@ image_urls = [
     'https://i.imgur.com/g7tnM8p.jpg',
     'https://i.imgur.com/mbGL9Oc.jpg',
     'https://i.imgur.com/Vxn4r6w.jpg',
-    'https://i.imgur.com/amRMc9g.jpg'
+    'https://i.imgur.com/amRMc9g.jpg',
+    'https://i.imgur.com/7MgoxCJ.jpg',
+    'https://i.imgur.com/NuDcPM0.jpg',
+    'https://i.imgur.com/h7RH2y8.jpg',
+    'https://i.imgur.com/qpcJBEJ.jpg',
+    'https://i.imgur.com/MTLN8mo.jpg',
+    'https://i.imgur.com/pW4vjva.jpg',
+    'https://i.imgur.com/MG5dOh1.jpg',
+    'https://i.imgur.com/5lC44Y0.jpg',
+    'https://i.imgur.com/vFK1vtb.jpg',
+    'https://i.imgur.com/ZfiANhP.jpg',
+    'https://i.imgur.com/3fJJOnU.jpg',
+    'https://i.imgur.com/pTiI7MX.jpg',
+    'https://i.imgur.com/2V8aIcA.jpg',
+    'https://i.imgur.com/4Wk4CSu.jpg',
+    'https://i.imgur.com/uiJ69uC.jpg',
+    'https://i.imgur.com/uiJ69uC.jpg',
+    'https://i.imgur.com/bW3OwjV.jpg',
+    'https://i.imgur.com/D5KQczy.jpg',
+    'https://i.imgur.com/APRBk0h.jpg'
 ]
 
 # Sends a message containing a random image to the specified user
@@ -64,7 +83,7 @@ def handle_message(event):
     user_id = event.source.user_id
     msg = event.message.text
 
-    if msg in ['隨機']:
+    if msg in ['隨機', '每日迷因', '隨機梗圖', 'random', '隨機寶寶']:
         send_random_image_message(user_id)
 
         line_bot_api.reply_message(
