@@ -66,9 +66,9 @@ def send_random_image_message(user_id):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     user_id = event.source.user_id
-    message_text = event.message.text
+    msg = event.message.text
 
-    if message_text.lower() == '隨機':
+    if msg.lower() == '隨機':
         send_random_image_message(user_id)
 
     else :
