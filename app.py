@@ -57,10 +57,6 @@ def send_random_image_message(user_id):
     message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
     line_bot_api.push_message(user_id, message)
 
-    line_bot_api.reply_message(
-        event.reply_token, 
-        image_message)
-
 
 # Your existing code for handling incoming messages
 @handler.add(MessageEvent, message=TextMessage)
@@ -70,6 +66,12 @@ def handle_message(event):
 
     if msg.lower() == '隨機':
         send_random_image_message(user_id)
+
+            line_bot_api.reply_message(
+        event.reply_token, 
+        image_message)
+
+
 
     else :
         r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
