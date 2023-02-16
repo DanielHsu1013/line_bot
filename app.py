@@ -67,9 +67,9 @@ def handle_message(event):
     if msg.lower() == '隨機':
         send_random_image_message(user_id)
 
-            line_bot_api.reply_message(
-        event.reply_token, 
-        image_message)
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
 
 
 
