@@ -57,9 +57,9 @@ def send_random_image_message(user_id):
     message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
     line_bot_api.push_message(user_id, message)
 
-        line_bot_api.reply_message(
-            event.reply_token, 
-            image_message)
+    line_bot_api.reply_message(
+        event.reply_token, 
+        image_message)
 
 
 # Your existing code for handling incoming messages
