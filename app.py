@@ -29,7 +29,7 @@ openai.api_key = os.environ.get("sk-TNn2kXF7Q3q98IbCASmbT3BlbkFJjCv9fF71OJ3yoKvm
 # Function to generate a response using the OpenAI API
 def generate_text(prompt):
     response = openai.Completion.create(
-        engine="davinci", prompt=prompt, max_tokens=50
+        engine="davinci", prompt=msg, max_tokens=50
     )
     return response.choices[0].text
 
@@ -112,9 +112,9 @@ def handle_message(event):
 
 
     # Example usage
-    prompt = "Hello, how are you?"
-    text = generate_text(prompt)
-    print(text)
+    if msg == "Hello, how are you?":
+        text = generate_text(prompt)
+        print(text)
 
 
 
