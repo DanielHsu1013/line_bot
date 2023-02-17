@@ -1,5 +1,7 @@
 import random
 import requests
+import openai
+import os
 
 from flask import Flask, request, abort
 
@@ -13,10 +15,23 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 )
 
+# Set up the OpenAI API credentials
+openai.api_key = "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"
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
+
+# Set OpenAI API key
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+# Function to generate a response using the OpenAI API
+def generate_response(prompt):
+    response = openai.Completion.create(
+        engine="davinci", prompt=prompt, max_tokens=50
+    )
+    return response.choices[0].text
 
 
 @app.route("/callback", methods=['POST'])
@@ -94,6 +109,13 @@ def handle_message(event):
 
     else :
         r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
+
+
+# Example usage
+prompt = "Hello, how are you?"
+text = generate_text(prompt)
+print(text)
+
 
 
 
@@ -270,7 +292,7 @@ def handle_message(event):
 
 
     if msg in ['哈囉', '嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
-        r = '在下是可愛寶寶~ 你/妳的寶寶迷因庫小助理。先聲名本寶寶不太會聊天，目前還在學習中。請多擔待。請問今天需要什麼?✧(◞•⌄• )◞ (若要獲得隨機寶寶圖，請輸入"隨機寶寶")'
+        r = '在下是可愛寶寶~ 你/妳的寶寶迷因庫小助理。先聲名本寶寶不太會聊天，目前還在學習中。請多擔待。請問今天需要什麼?✧(•⌄• )◞ (若要獲得隨機寶寶圖，請輸入"隨機寶寶")'
     elif msg in ['來聊天', '可以聊天嗎?','要不要聊天?' ,'可以聊天嗎' ,'要不要聊天', '要來聊天嗎'] :
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['我想要梗圖', '我想要迷因', '我想要找迷因', 'meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
@@ -289,51 +311,3 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
-
-
-
-    # import openai
-
-# from flask import Flask, request
-
-# # 載入 LINE Message API 相關函式庫
-# from linebot import LineBotApi, WebhookHandler
-# from linebot.models import TextSendMessage   # 載入 TextSendMessage 模組
-# import json
-
-# app = Flask(__name__)
-
-# @app.route("/", methods=['POST'])
-# def linebot():
-#     body = request.get_data(as_text=True)
-#     json_data = json.loads(body)
-#     print(json_data)
-#     try:
-#         line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
-#         handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
-#         signature = request.headers['X-Line-Signature']
-#         handler.handle(body, signature)
-#         tk = json_data['events'][0]['replyToken']
-#         msg = json_data['events'][0]['message']['text']
-#         # 取出文字的前五個字元，轉換成小寫
-#         ai_msg = msg[:6].lower()
-#         reply_msg = ''
-#         # 取出文字的前五個字元是 hi ai:
-#         if ai_msg == 'hi ai:':
-#             openai.api_key = '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'
-#             # 將第六個字元之後的訊息發送給 OpenAI
-#             response = openai.Completion.create(
-#                 engine='text-davinci-003',
-#                 prompt=msg[6:],
-#                 max_tokens=256,
-#                 temperature=0.5,
-#                 )
-#             # 接收到回覆訊息後，移除換行符號
-#             reply_msg = response["choices"][0]["text"].replace('\n','')
-#         else:
-#             reply_msg = msg
-#         text_message = TextSendMessage(text=reply_msg)
-#         line_bot_api.reply_message(tk,text_message)
-#     except:
-#         print('error')
-#     return 'OK'
