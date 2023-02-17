@@ -27,7 +27,7 @@ handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Function to generate a response using the OpenAI API
-def generate_response(prompt):
+def generate_text(prompt):
     response = openai.Completion.create(
         engine="davinci", prompt=prompt, max_tokens=50
     )
