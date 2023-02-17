@@ -114,10 +114,12 @@ def handle_message(event):
 
     # Example usage
     if msg == "Hello, how are you?":
-        text = generate_text(msg)
+        text = generate_text(prompt)
         print(text)
 
-
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 
     if msg in ['爛', '你好爛', '這甚麼爛程式', '爛程式']:
