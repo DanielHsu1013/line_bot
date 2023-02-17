@@ -111,10 +111,10 @@ def handle_message(event):
         r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
 
 
-# Example usage
-prompt = "Hello, how are you?"
-text = generate_text(prompt)
-print(text)
+    # Example usage
+    prompt = "Hello, how are you?"
+    text = generate_text(prompt)
+    print(text)
 
 
 
