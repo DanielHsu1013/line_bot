@@ -1,3 +1,4 @@
+#openai_api_key = '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'
 import random
 import requests
 import openai
@@ -16,7 +17,7 @@ from linebot.models import (
 )
 
 # Set up the OpenAI API credentials
-openai.api_key = "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"
+#openai.api_key = "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"
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2Xq
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
 # Set OpenAI API key
-openai.api_key = os.environ.get("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")
+openai.api_key = os.environ.get("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")
 
 # Function to generate a response using the OpenAI API
 def generate_text(prompt):
@@ -113,7 +114,7 @@ def handle_message(event):
 
     # Example usage
     if msg == "Hello, how are you?":
-        text = generate_text(prompt)
+        text = generate_text(msg)
         print(text)
 
 
