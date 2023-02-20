@@ -3,7 +3,6 @@ import random
 import requests
 import openai
 import os
-import app
 
 from flask import Flask, request, abort
 
