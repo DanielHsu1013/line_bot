@@ -23,7 +23,7 @@ line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2Xq
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
 # Set OpenAI API key
-openai.api_key = os.environ.get("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")
+openai.api_key = os.environ.get('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')
 
 # Function to generate a response using the OpenAI API
 def generate_text(prompt):
