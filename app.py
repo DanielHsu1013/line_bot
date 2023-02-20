@@ -109,7 +109,7 @@ def handle_message(event):
 
 
     else :
-        r = '我今年一歲，還不聽不懂你說什麼(OrQ)'
+        r = '我今年一歲，還聽不懂你說什麼(OrQ)'
 
 
     # Example usage
