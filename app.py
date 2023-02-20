@@ -22,6 +22,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
+openai.api_key = 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
+
 # Set OpenAI API key
 openai.api_key = os.environ.get('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')
 
