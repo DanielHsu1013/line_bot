@@ -16,8 +16,6 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 )
 
-# Set up the OpenAI API credentials
-#openai.api_key = "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"
 
 app = Flask(__name__)
 
@@ -93,11 +91,35 @@ def send_random_image_message(user_id):
     line_bot_api.push_message(user_id, message)
 
 
-# Your existing code for handling incoming messages
+# Handle Line bot messages
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    # Use OpenAI to generate a response
+    prompt = f"User: {event.message.text}\nAI:"
+    response = openai.Completion.create(
+        engine='davinci',
+        prompt=prompt,
+        max_tokens=150,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    message = TextSendMessage(text=response.choices[0].text)
+    line_bot_api.reply_message(event.reply_token, message)
     user_id = event.source.user_id
     msg = event.message.text
+
+
+    # Example usage
+    if msg == "Hello, how are you?":
+        text = generate_text(prompt)
+        print(text)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
+
+
 
     if msg in ['隨機', '每日迷因', '隨機梗圖', 'random', '隨機寶寶']:
         send_random_image_message(user_id)
@@ -111,15 +133,6 @@ def handle_message(event):
     else :
         r = '我今年一歲，還聽不懂你說什麼(OrQ)'
 
-
-    # Example usage
-    if msg == "Hello, how are you?":
-        text = generate_text(prompt)
-        print(text)
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
 
 
     if msg in ['爛', '你好爛', '這甚麼爛程式', '爛程式']:
