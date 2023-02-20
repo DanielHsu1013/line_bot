@@ -22,10 +22,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('txxdJs06LJjEmPkAu1cD0qN6VQWvUbGcDzytZ+VdNEhhjCejas2XqSdnP80F9LbnKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgzRCdo8tOlYd3LExUGTQYHTmJZEjo3To1IC6MCeOADz2wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
-openai.api_key = "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"
-
 # Set OpenAI API key
-openai.api_key = os.environ.get('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')
+openai.api_key = os.environ.get("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")
 
 # Function to generate a response using the OpenAI API
 def generate_text(prompt):
@@ -93,35 +91,11 @@ def send_random_image_message(user_id):
     line_bot_api.push_message(user_id, message)
 
 
-# Handle Line bot messages
+# Your existing code for handling incoming messages
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    # Use OpenAI to generate a response
-    prompt = f"User: {event.message.text}\nAI:"
-    response = openai.Completion.create(
-        engine='davinci',
-        prompt=prompt,
-        max_tokens=150,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-    message = TextSendMessage(text=response.choices[0].text)
-    line_bot_api.reply_message(event.reply_token, message)
     user_id = event.source.user_id
     msg = event.message.text
-
-
-    # Example usage
-    if msg == "Hello, how are you?":
-        text = generate_text(prompt)
-        print(text)
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
-
-
 
     if msg in ['隨機', '每日迷因', '隨機梗圖', 'random', '隨機寶寶']:
         send_random_image_message(user_id)
@@ -135,6 +109,15 @@ def handle_message(event):
     else :
         r = '我今年一歲，還聽不懂你說什麼(OrQ)'
 
+
+    # Example usage
+    if msg == "Hello, how are you?":
+        text = generate_text(prompt)
+        print(text)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 
     if msg in ['爛', '你好爛', '這甚麼爛程式', '爛程式']:
