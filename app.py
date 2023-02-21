@@ -118,7 +118,7 @@ def handle_message(event):
             image_message)
 
 
-         if msg in ['co co', '貓', '貓咪', '摳摳', '摳摳龍']:
+    if msg in ['co co', '貓', '貓咪', '摳摳', '摳摳龍']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/E27hB0l.jpg',
             preview_image_url='https://i.imgur.com/E27hB0l.jpg'
