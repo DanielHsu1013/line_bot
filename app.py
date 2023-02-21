@@ -86,6 +86,8 @@ def handle_message(event):
     user_id = event.source.user_id
     msg = event.message.text
 
+
+
     if msg in ['隨機', '每日迷因', '隨機梗圖', 'random', '隨機寶寶']:
         send_random_image_message(user_id)
 
@@ -94,13 +96,8 @@ def handle_message(event):
             image_message)
 
 
-
     else :
         r = '我今年一歲，還聽不懂你說什麼(OrQ)'
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
 
 
 
@@ -274,6 +271,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
+
 
 
     if msg in ['哈囉', '嗨嗨', 'Hi', 'hi', 'HI', '你好', '妳好', '嗨', 'Ciao', 'ciao', '安安', '起床', '起來', 'hello', 'Hello', 'HELLO']:
