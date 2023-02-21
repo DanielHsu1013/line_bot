@@ -68,8 +68,14 @@ image_urls = [
     'https://i.imgur.com/uiJ69uC.jpg',
     'https://i.imgur.com/bW3OwjV.jpg',
     'https://i.imgur.com/D5KQczy.jpg',
-    'https://i.imgur.com/APRBk0h.jpg'
+    'https://i.imgur.com/APRBk0h.jpg',
+    'https://i.imgur.com/kXRUUga.jpg',
+    'https://i.imgur.com/XWimhbR.jpg',
+    'https://i.imgur.com/T9cjpKB.jpg',
+    'https://i.imgur.com/5UNwYSv.jpg',
+    'https://i.imgur.com/jiDCArw.jpg',
 ]
+
 
 # Sends a message containing a random image to the specified user
 def send_random_image_message(user_id):
@@ -110,6 +116,18 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
+
+
+         if msg in ['co co', '貓', '貓咪', '摳摳', '摳摳龍']:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/E27hB0l.jpg',
+            preview_image_url='https://i.imgur.com/E27hB0l.jpg'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token, 
+            image_message)
+
 
     if msg in ['晚安', '掰掰', '再見', '明天見']:
         image_message = ImageSendMessage(
