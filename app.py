@@ -94,16 +94,6 @@ def handle_message(event):
             image_message)
 
 
-
-    else :
-        r = '我今年一歲，還聽不懂你說什麼(OrQ)'
-
-
-    # Example usage
-    if msg == "Hello, how are you?":
-        text = generate_text(prompt)
-        print(text)
-
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
@@ -287,7 +277,11 @@ def handle_message(event):
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['我想要梗圖', '我想要迷因', '我想要找迷因', 'meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
         r = '請問今天想生產哪種寶寶迷因呢?'
-     
+        
+    else :
+        r = '我今年一歲，還聽不懂你說什麼(OrQ)'
+
+
 
     line_bot_api.reply_message(
         event.reply_token,
