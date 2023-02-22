@@ -20,6 +20,20 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('ea/BLUWOvQXmOmOC5s1h6GaJb2+RKYpnnI1ROnArigQT6bm2Fqyr9QWOHZk7vdrfKL4WZWa1ryDkrmWWUbw5Cjfu1E3L628GqzOjCyOSHgx917KE+5d1xdPRly44EUSdtw6c7q0dF6eJ4TnA1eH9FQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
+class Play:
+    def __init__(self):
+        self.x = random.randint(1,100)
+        self.c = 0
+
+    def guess_game(self, y):
+        self.c = self.c + 1
+        if y == self.x:
+            self.c = self.c + 1
+            return f'答對了~你一共猜了{self.c - 1}次'
+        elif y >= self.x:
+            return f'再低一點~. 你已經猜了{self.c}次'
+        else:
+            return f'再高一點~. 你已經猜了{self.c}次'
 
 
 @app.route("/callback", methods=['POST'])
@@ -76,32 +90,32 @@ image_urls = [
     'https://i.imgur.com/jiDCArw.jpg',
 ]
 
-#guess game
-class Play:
-    def __init__(self):
-        print('要開始喽~')
+# guess game
+# class Play:
+#     def __init__(self):
+#         print('要開始喽~')
 
-    def guess_game(self):
-        x = random.randint(1,100)
-        c = 0
+#     def guess_game(self):
+#         x = random.randint(1,100)
+#         c = 0
 
-        while True:
-            c = c + 1
-            mgs = input('0到100，請猜一個數字~')
-            msg = int(msg)
-            if msg == x:
-                c = c + 1
-                r = '答對了~你一共猜了', c - 1, '次'
-                break
-            elif msg >= x:
-                r = '再低一點~. 你已經猜了', c, '次'
-            else:
-                r = '再高一點~. 你已經猜了', c, '次'
+#         while True:
+#             c = c + 1
+#             mgs = input('0到100，請猜一個數字~')
+#             msg = int(msg)
+#             if msg == x:
+#                 c = c + 1
+#                 r = '答對了~你一共猜了', c - 1, '次'
+#                 break
+#             elif msg >= x:
+#                 r = '再低一點~. 你已經猜了', c, '次'
+#             else:
+#                 r = '再高一點~. 你已經猜了', c, '次'
 
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=r))
+#         line_bot_api.reply_message(
+#             event.reply_token,
+#             TextSendMessage(text=r))
 
 
 
@@ -120,6 +134,17 @@ def handle_message(event):
     user_id = event.source.user_id
     msg = event.message.text
 
+
+    if event.message.text == '猜數字':
+        game = Play() # create an instance of the Play class
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='要開始喽~'))
+    elif event.message.text.isdigit():
+        guess_result = game.guess_game(int(event.message.text))
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=r))
 
 
     if msg in ['隨機', '每日迷因', '隨機梗圖', 'random', '隨機寶寶']:
