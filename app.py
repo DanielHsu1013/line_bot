@@ -141,7 +141,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text='要開始喽~'))
-        game.guess_game()
+            game.guess_game()
 
 
 
