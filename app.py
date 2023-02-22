@@ -91,12 +91,12 @@ class Play:
             msg = int(msg)
             if msg == x:
                 c = c + 1
-                r = ('答對了~你一共猜了', c - 1, '次')
+                r = '答對了~你一共猜了', c - 1, '次'
                 break
             elif msg >= x:
-                r = ('再低一點~. 你已經猜了', c, '次')
+                r = '再低一點~. 你已經猜了', c, '次'
             else:
-                r = ('再高一點~. 你已經猜了', c, '次')
+                r = '再高一點~. 你已經猜了', c, '次'
 
 
         line_bot_api.reply_message(
