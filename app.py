@@ -137,14 +137,13 @@ def handle_message(event):
 
     if event.message.text == '猜數字':
         game = Play() # create an instance of the Play class
-        
+        game.guess_game()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text='要開始喽~'))
-            game.guess_game()
 
 
-
+        
     # elif event.message.text.isdigit():
     #     guess_result = game.guess_game(int(event.message.text))
     #     line_bot_api.reply_message(
