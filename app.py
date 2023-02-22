@@ -87,17 +87,21 @@ class Play:
 
         while True:
             c = c + 1
-            y = input('0到100，請猜一個數字~')
-            y = int(y)
-            if y == x:
+            mgs = input('0到100，請猜一個數字~')
+            msg = int(msg)
+            if msg == x:
                 c = c + 1
-                print('答對了~你一共猜了', c - 1, '次')
+                r = ('答對了~你一共猜了', c - 1, '次')
                 break
-            elif y >= x:
-                print('再低一點~. 你已經猜了', c, '次')
+            elif msg >= x:
+                r = ('再低一點~. 你已經猜了', c, '次')
             else:
-                print('再高一點~. 你已經猜了', c, '次')
+                r = ('再高一點~. 你已經猜了', c, '次')
 
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=r))
 
 
 
