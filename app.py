@@ -76,6 +76,30 @@ image_urls = [
     'https://i.imgur.com/jiDCArw.jpg',
 ]
 
+#guess game
+class Play:
+    def __init__(self):
+        print('要開始喽~')
+
+    def guess_game(self):
+        x = random.randint(1,100)
+        c = 0
+
+        while True:
+            c = c + 1
+            y = input('0到100，請猜一個數字~')
+            y = int(y)
+            if y == x:
+                c = c + 1
+                print('答對了~你一共猜了', c - 1, '次')
+                break
+            elif y >= x:
+                print('再低一點~. 你已經猜了', c, '次')
+            else:
+                print('再高一點~. 你已經猜了', c, '次')
+
+
+
 
 # Sends a message containing a random image to the specified user
 def send_random_image_message(user_id):
@@ -300,7 +324,12 @@ def handle_message(event):
     elif msg in ['我想要梗圖', '我想要迷因', '我想要找迷因', 'meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
         r = '請問今天想生產哪種寶寶迷因呢?'
     elif msg in ['智障', '智障寶寶']:
-        r = '你才智障哩~'   
+        r = '你才智障哩~'
+    elif msg in ['我想玩遊戲']:
+        game = Play() # create an instance of the Play class
+        game.guess_game() # call the guess_game method on the instance
+
+
 
     line_bot_api.reply_message(
         event.reply_token,
@@ -313,33 +342,3 @@ if __name__ == "__main__":
     app.run()
 
 
-# class Play:
-#     def __init__(self):
-#         print('要開始喽~')
-
-#     def guess_game(self):
-#         x = random.randint(1,100)
-#         c = 0
-
-#         while True:
-#             c = c + 1
-#             y = input('0到100，請猜一個數字~')
-#             y = int(y)
-#             if y == x:
-#                 c = c + 1
-#                 print('答對了~你一共猜了', c - 1, '次')
-#                 break
-#             elif y >= x:
-#                 print('再低一點~. 你已經猜了', c, '次')
-#             else:
-#                 print('再高一點~. 你已經猜了', c, '次')
-
-
-# msg = input('想玩猜數字遊戲嗎?')
-# if msg == ('好啊'):
-#     game = Play() # create an instance of the Play class
-#     game.guess_game() # call the guess_game method on the instance
-
-#     line_bot_api.reply_message(
-#         event.reply_token,
-#         TextSendMessage(text=r))
