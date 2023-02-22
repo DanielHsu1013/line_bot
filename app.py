@@ -194,7 +194,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛', '你也太可愛了吧', '可愛']:
+    if msg in ['你好可愛', '你怎麼這麼可愛', '你超可愛', '好可愛喔', '好可愛', '你也太可愛了吧', '可愛', '可愛寶寶']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/amRMc9g.jpg',
             preview_image_url='https://i.imgur.com/amRMc9g.jpg'
@@ -203,6 +203,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, 
             image_message)
+
 
 
     if msg in ['今天是我的生日', '我今天生日', '可以唱生日快樂給我聽嗎', '可以唱生日快樂給我聽嗎?', '生日', '生日快樂' ]:
@@ -226,7 +227,7 @@ def handle_message(event):
             event.reply_token, 
             image_message)
 
-    if msg in ['不是', '不是這個', '否', 'no', 'No', '不對', '這不是我要的', '我不要這個', ]:
+    if msg in ['不是', '不是這個', '否', 'no', 'No', '不對', '這不是我要的', '我不要這個', '怎麼醬', '怎麼這樣']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/Ef5BVhr.jpg',
             preview_image_url='https://i.imgur.com/Ef5BVhr.jpg'
@@ -259,7 +260,7 @@ def handle_message(event):
             image_message)
 
 
-    if msg in ['哭', '哭腰', '靠腰', '哭喔', '哭ㄟ', '傻眼']:
+    if msg in ['哭', '哭腰', '靠腰', '哭喔', '哭ㄟ', '傻眼', '可憐阿', '可憐', '可憐啊']:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/ZfiANhP.jpg',
             preview_image_url='https://i.imgur.com/ZfiANhP.jpg'
@@ -298,7 +299,8 @@ def handle_message(event):
         r = '很抱歉，本寶寶才一歲。還沒有學會聊天技能'
     elif msg in ['我想要梗圖', '我想要迷因', '我想要找迷因', 'meme', 'MEME', 'Meme', '迷因', '我想找迷因', '找迷因', '找MEME', '找meme', '找Meme', '梗圖', '可愛寶寶迷因', '可愛寶寶梗圖', '可愛寶寶meme', '可愛寶寶Meme', '可愛寶寶MEME']:
         r = '請問今天想生產哪種寶寶迷因呢?'
-     
+    elif msg in ['智障', '智障寶寶']:
+        r = '你才智障哩~'   
 
     line_bot_api.reply_message(
         event.reply_token,
@@ -309,3 +311,35 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
+
+
+class Play:
+    def __init__(self):
+        print('要開始喽~')
+
+    def guess_game(self):
+        x = random.randint(1,100)
+        c = 0
+
+        while True:
+            c = c + 1
+            y = input('0到100，請猜一個數字~')
+            y = int(y)
+            if y == x:
+                c = c + 1
+                print('答對了~你一共猜了', c - 1, '次')
+                break
+            elif y >= x:
+                print('再低一點~. 你已經猜了', c, '次')
+            else:
+                print('再高一點~. 你已經猜了', c, '次')
+
+
+msg = input('想玩猜數字遊戲嗎?')
+if msg == ('好啊'):
+    game = Play() # create an instance of the Play class
+    game.guess_game() # call the guess_game method on the instance
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
