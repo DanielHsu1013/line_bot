@@ -22,18 +22,26 @@ handler = WebhookHandler('4ed29c44db401ce4d951957b5551d4aa')
 
 class Play:
     def __init__(self):
-        self.x = random.randint(1,100)
-        self.c = 0
+        print('要開始喽~')
 
     def guess_game(self):
-        self.c = self.c + 1
-        if y == self.x:
-            self.c = self.c + 1
-            return f'答對了~你一共猜了{self.c - 1}次'
-        elif y >= self.x:
-            return f'再低一點~. 你已經猜了{self.c}次'
-        else:
-            return f'再高一點~. 你已經猜了{self.c}次'
+        x = random.randint(1,100)
+        c = 0
+
+        while True:
+            c = c + 1
+            y = input('0到100，請猜一個數字~')
+            y = int(y)
+            if y == x:
+                c = c + 1
+                print('答對了~你一共猜了', c - 1, '次')
+                break
+            elif y >= x:
+                print('再低一點~. 你已經猜了', c, '次')
+            else:
+                print('再高一點~. 你已經猜了', c, '次')
+
+
 
 
 @app.route("/callback", methods=['POST'])
@@ -90,33 +98,6 @@ image_urls = [
     'https://i.imgur.com/jiDCArw.jpg',
 ]
 
-# guess game
-# class Play:
-#     def __init__(self):
-#         print('要開始喽~')
-
-#     def guess_game(self):
-#         x = random.randint(1,100)
-#         c = 0
-
-#         while True:
-#             c = c + 1
-#             mgs = input('0到100，請猜一個數字~')
-#             msg = int(msg)
-#             if msg == x:
-#                 c = c + 1
-#                 r = '答對了~你一共猜了', c - 1, '次'
-#                 break
-#             elif msg >= x:
-#                 r = '再低一點~. 你已經猜了', c, '次'
-#             else:
-#                 r = '再高一點~. 你已經猜了', c, '次'
-
-
-#         line_bot_api.reply_message(
-#             event.reply_token,
-#             TextSendMessage(text=r))
-
 
 
 # Sends a message containing a random image to the specified user
@@ -138,6 +119,7 @@ def handle_message(event):
     if event.message.text == '猜數字':
         game = Play() # create an instance of the Play class
         game.guess_game()
+
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text='要開始喽~'))
