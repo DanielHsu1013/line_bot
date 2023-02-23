@@ -30,16 +30,19 @@ class Play:
 
         while True:
             c = c + 1
-            y = input('0到100，請猜一個數字~')
-            y = int(y)
-            if y == x:
+            msg = input('0到100，請猜一個數字~')
+            msg = int(msg)
+            if msg == x:
                 c = c + 1
                 print('答對了~你一共猜了', c - 1, '次')
                 break
-            elif y >= x:
+            elif msg >= x:
                 print('再低一點~. 你已經猜了', c, '次')
             else:
                 print('再高一點~. 你已經猜了', c, '次')
+                
+            except EOFError:
+            print("Oops! Something went wrong. Please try again.")
 
 
 
