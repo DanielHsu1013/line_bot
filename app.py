@@ -25,7 +25,7 @@ class Play:
         self.x = random.randint(1,100)
         self.c = 0
 
-    def guess_game(self, y):
+    def guess_game(self):
         self.c = self.c + 1
         if y == self.x:
             self.c = self.c + 1
@@ -142,8 +142,6 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text='要開始喽~'))
 
-
-        
     # elif event.message.text.isdigit():
     #     guess_result = game.guess_game(int(event.message.text))
     #     line_bot_api.reply_message(
